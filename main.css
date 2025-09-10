@@ -1,0 +1,296 @@
+/* ===== Modernes „PayPal-artiges“ Theme – nur CSS (Drop-in) ===== */
+
+:root{
+  /* Farben – klare Blautöne, neutrale Flächen */
+  --bg:#f7f9fc;           /* Seitenhintergrund (leichtes Blau-Grau) */
+  --surface:#ffffff;      /* Karten/Flächen */
+  --ink:#0f172a;          /* Primärtext (navy) */
+  --muted:#64748b;        /* Sekundärtext */
+  --brand:#0070e0;        /* PayPal-artiges Blau */
+  --brand-600:#005bb5;    /* Hover/aktiv */
+  --brand-700:#003087;    /* Tiefer Akzent */
+  --brand-soft:#e8f1ff;   /* zarter Blau-Tint */
+  --border:#e6eaef;       /* feine Linien */
+
+  /* Radius/Schatten/Layout */
+  --radius:12px;
+  --shadow:0 8px 24px rgba(15,23,42,.06);
+  --shadow-lg:0 12px 36px rgba(15,23,42,.09);
+  --container:1120px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.55;
+  font-size:clamp(16px,1.7vw,18px);
+  overflow-x:hidden;
+}
+
+img{max-width:100%;display:block}
+.sr-only{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.container{width:min(100% - 2rem,var(--container));margin-inline:auto}
+
+/* Links (nicht Buttons) – dezent, professionell */
+a:not(.btn){
+  color:var(--brand);
+  text-decoration:underline;
+  text-underline-offset:2px;
+  text-decoration-thickness:1px;
+}
+a:not(.btn):hover{ text-decoration-thickness:2px }
+
+/* ================= Header ================= */
+header{
+  position:sticky;top:0;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(1.1) blur(12px);
+  border-bottom:1px solid var(--border);
+  z-index:20;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0}
+.brand{
+  color:inherit;text-decoration:none;font-weight:900;letter-spacing:.2px;
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-size:clamp(1.125rem,5vw,1.5rem);line-height:1
+}
+.brand::before{
+  content:"";inline-size:14px;block-size:14px;background:var(--brand);
+  border-radius:4px;box-shadow:0 4px 12px rgba(0,112,224,.35)
+}
+.brand b{
+  display:inline-block;padding-bottom:2px;
+  background-image:linear-gradient(to right, var(--brand), var(--brand));
+  background-size:100% .12em;background-repeat:no-repeat;background-position:0 100%
+}
+@media (max-width:640px){.brand::before{inline-size:12px;block-size:12px}}
+.nav-cta{display:flex;gap:.5rem}
+
+/* ================= Buttons & Badges ================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  border:1px solid transparent;border-radius:11px;padding:.72rem 1.05rem;
+  font-weight:700;cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease,border-color .18s ease,filter .18s ease
+}
+.btn:focus-visible{
+  outline:2px solid #7bbdff; outline-offset:2px;
+}
+.btn:hover{transform:translateY(-1px)}
+
+.btn.primary{
+  background:linear-gradient(180deg, #1180ea 0%, var(--brand) 55%, var(--brand-600) 100%);
+  color:#fff; box-shadow:var(--shadow);
+}
+.btn.primary:hover{ filter:brightness(.98) }
+.btn.primary:active{ transform:translateY(0) }
+
+.btn.ghost{
+  background:var(--surface);border-color:var(--border);color:var(--ink);
+  box-shadow:0 2px 8px rgba(15,23,42,.04)
+}
+.btn.ghost:hover{ background:#f9fbff }
+
+.badge{
+  display:inline-flex;align-items:center;gap:.45rem;
+  border:1px solid var(--border);border-radius:999px;padding:.28rem .7rem;
+  font-weight:600;color:var(--muted);background:var(--surface)
+}
+.pill{
+  display:inline-flex;align-items:center;gap:.45rem;
+  border:1px solid #d7e6ff;border-radius:999px;padding:.3rem .7rem;
+  background:var(--brand-soft); color:#0a3a83; font-weight:700;
+}
+
+/* ================= Hervorhebungen ================= */
+.muted{color:var(--muted)}
+.lead{font-size:clamp(1rem,2.4vw,1.15rem)}
+.nowrap{white-space:nowrap}
+
+.highlight{
+  display:inline-block;margin:.6rem 0;
+  background:var(--brand-soft);
+  border:1px solid #d7e6ff;
+  color:var(--ink);border-radius:12px;padding:.5rem .8rem;font-weight:800
+}
+
+.samstag-note{
+  display:flex;gap:.8rem;align-items:center;flex-wrap:wrap;
+  padding:1rem;border-radius:12px;
+  background:linear-gradient(180deg,#f1f7ff 0%,#eef5ff 100%);
+  border:1px solid #dbe7ff;
+}
+.samstag-note .btn{padding:.7rem 1rem;border-radius:11px}
+
+/* ================= Hero ================= */
+.hero{padding:clamp(2rem,6vw,4rem) 0}
+.hero-grid{display:grid;gap:1rem;align-items:start}
+.hero-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem
+}
+/* ruhiger, professioneller Verlauf in Blau */
+.stone-bg{
+  background:
+    radial-gradient(52rem 52rem at -10% -20%, #e9f2ff 0%, transparent 60%),
+    radial-gradient(44rem 44rem at 120% -10%, #edf4ff 0%, transparent 62%);
+}
+.hero-cta{display:flex;gap:.6rem;margin:.6rem 0 0;flex-wrap:wrap}
+
+/* ================= Ticker ================= */
+.ticker{border-block:1px solid var(--border);background:var(--surface);overflow:hidden}
+.ticker-mask{overflow:hidden}
+.ticker-inner{display:flex;gap:2rem;white-space:nowrap;animation:marquee 28s linear infinite}
+.ticker-row{display:flex;gap:2rem;padding:.6rem 0;min-width:max-content}
+.tick{color:var(--muted);font-weight:700;letter-spacing:.2px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.ticker-inner{animation:none}}
+
+/* ================= Sections / Cards ================= */
+section{padding:clamp(2rem,6vw,4rem) 0}
+.section-title{
+  margin:0 0 .6rem;font-size:clamp(1.4rem,4vw,2rem);
+  font-weight:900; letter-spacing:.2px;
+  position:relative; padding-bottom:.35rem;
+}
+.section-title::after{
+  content:"";position:absolute;left:0;bottom:0;height:3px;width:56px;
+  background:linear-gradient(90deg,var(--brand),transparent);
+  border-radius:999px;
+}
+.grid{display:grid;gap:1rem}
+
+.services .service,
+.steps .step{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow);
+  transition:box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+.services .service:hover,
+.steps .step:hover{
+  box-shadow:var(--shadow-lg);
+  transform:translateY(-1px);
+  border-color:#dbe7ff;
+}
+.steps .step b{display:block;margin-bottom:.25rem}
+
+.bg-soft{background:#f2f6fc}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:1rem;
+  transition:box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+.card:hover{ box-shadow:var(--shadow-lg); border-color:#dbe7ff }
+
+/* ================= FAQ ================= */
+details{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px; padding:.9rem 1rem; margin:.7rem 0;
+  box-shadow:0 6px 18px rgba(15,23,42,.04);
+}
+details[open]{border-color:#dbe7ff}
+summary{
+  cursor:pointer; list-style:none; font-weight:800;
+  display:flex; align-items:center; gap:.6rem;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{
+  content:"▸"; display:inline-block; transform:translateY(1px);
+  color:var(--brand); font-weight:900;
+}
+details[open] summary::before{content:"▾"}
+
+/* ================= Kontakt / Formular ================= */
+.contact-grid{display:grid;gap:1rem}
+.field{display:grid;gap:.35rem}
+.field input,.field textarea{
+  padding:.78rem .9rem;border:1px solid var(--border);
+  border-radius:12px;font:inherit;background:var(--surface);
+  transition:border-color .18s ease, box-shadow .18s ease, background-color .18s ease
+}
+.field input:hover,.field textarea:hover{ background:#fbfdff }
+.field input:focus,.field textarea:focus{
+  border-color:#7bbdff;
+  box-shadow:0 0 0 3px #e0efff;
+}
+.field textarea{min-height:140px}
+
+/* ================= Footer ================= */
+.foot{border-top:1px solid var(--border);background:var(--surface)}
+.foot-grid{display:grid;gap:.75rem;align-items:center}
+.foot .badge{border-radius:10px}
+
+/* ================= Dialoge ================= */
+.dialog{
+  border:1px solid var(--border);border-radius:16px;
+  box-shadow:0 22px 60px rgba(15,23,42,.14);padding:1rem;
+  max-width:min(90vw,720px);background:var(--surface)
+}
+.dialog::backdrop{background:rgba(0,20,60,.28)}
+.dialog-actions{display:flex;justify-content:end;gap:.5rem;margin-top:.75rem}
+
+/* ================= Mobile Sticky CTA ================= */
+.mobile-cta{
+  position:sticky;bottom:0;border-top:1px solid var(--border);
+  background:#ffffffcc;backdrop-filter:blur(6px);
+  display:flex;gap:.6rem;justify-content:space-between;padding:.6rem;z-index:15
+}
+
+/* ================= Layout Breakpoints ================= */
+@media (min-width:640px){
+  .services{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact-grid{grid-template-columns:1.1fr .9fr}
+}
+@media (max-width:639px){
+  #ueber-uns .grid{grid-template-columns:1fr !important}
+}
+@media (min-width:960px){
+  .hero-grid{grid-template-columns:1.2fr .8fr}
+  .services{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:1fr auto}
+  .mobile-cta{display:none}
+}
+
+/* ================= Fokus & Barrierefreiheit ================= */
+:where(a,button,input,textarea,summary):focus-visible{
+  outline:2px solid #7bbdff; outline-offset:3px; border-radius:10px;
+}
+
+/* ================= Bewegungsreduktion ================= */
+@media (prefers-reduced-motion: reduce){
+  .btn,.card,.services .service,.steps .step{transition:none}
+  .ticker-inner{animation:none}
+}
+
+/* Chips statt dicker Kästen */
+.pill,.badge{
+  background:#eef5ff; border-color:#d7e6ff; color:#0a3a83; font-weight:700;
+}
+/* dezente Info-Hinweise */
+.highlight{
+  background:#eef5ff; border:1px solid #d7e6ff; color:var(--ink); border-radius:12px;
+}
+.samstag-note{
+  background:linear-gradient(180deg,#f1f7ff 0%,#eef5ff 100%); border:1px solid #dbe7ff;
+}
+
+/* ==== Mobile: Header-CTAs ausblenden, nur Sticky-CTA nutzen ==== */
+@media (max-width: 959.98px){
+  header .nav-cta{ display:none !important; }
+  header .nav{ flex-wrap:wrap; gap:.6rem; } /* kompakter Header */
+}
+
+/* (Optional) Sicherstellen, dass auf Desktop die Header-CTAs sichtbar sind */
+@media (min-width: 960px){
+  header .nav-cta{ display:flex !important; }
+  .mobile-cta{ display:none !important; } /* redundanzsicher, falls überschrieben */
+}
